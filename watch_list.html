@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>My Watchlist</title>
+
+<style>
+
+body{
+background:#111;
+color:white;
+font-family:Arial;
+margin:0;
+}
+
+h1{
+padding:20px;
+}
+
+.grid{
+display:flex;
+flex-wrap:wrap;
+gap:15px;
+padding:20px;
+}
+
+.card img{
+width:200px;
+border-radius:6px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>My Watchlist</h1>
+
+<div class="grid" id="watch"></div>
+
+<script>
+
+let list=JSON.parse(localStorage.getItem("watch")||"[]")
+
+const watch=document.getElementById("watch")
+
+list.forEach(movie=>{
+
+let card=document.createElement("div")
+
+card.className="card"
+
+card.innerHTML=`
+<img src="${movie.poster}">
+<p>${movie.title}</p>
+<button onclick="removeMovie('${movie.title}')">Remove</button>
+`
+
+watch.appendChild(card)
+
+})
+
+function removeMovie(title){
+
+let list=JSON.parse(localStorage.getItem("watch")||"[]")
+
+list=list.filter(m=>m.title!==title)
+
+localStorage.setItem("watch",JSON.stringify(list))
+
+location.reload()
+
+}
+
+</script>
+
+</body>
+</html>

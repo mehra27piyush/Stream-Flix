@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Stream-Flix</title>
+
+<style>
+
+body{
+margin:0;
+background:#111;
+color:white;
+font-family:Arial;
+}
+
+.nav{
+display:flex;
+justify-content:space-between;
+padding:20px;
+background:black;
+}
+
+.logo{
+color:red;
+font-size:28px;
+}
+
+.banner{
+height:450px;
+background:url("https://image.tmdb.org/t/p/original/s3TBrRGB1iav7gFOCNx3H31MoES.jpg");
+background-size:cover;
+display:flex;
+align-items:center;
+padding-left:50px;
+}
+
+.banner h1{
+font-size:40px;
+}
+
+.section{
+padding:20px;
+}
+
+.row-container{
+position:relative;
+}
+
+.row{
+display:flex;
+gap:10px;
+overflow-x:hidden;
+scroll-behavior:smooth;
+}
+
+.card{
+width:200px;
+flex-shrink:0;
+cursor:pointer;
+}
+
+.card img{
+width:100%;
+border-radius:6px;
+transition:0.3s;
+}
+
+.card img:hover{
+transform:scale(1.1);
+}
+
+.arrow{
+position:absolute;
+top:40%;
+font-size:30px;
+background:black;
+border:none;
+color:white;
+cursor:pointer;
+}
+
+.left{left:0}
+.right{right:0}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="nav">
+
+<div class="logo">Stream-Flix</div>
+
+<div>
+
+<input id="search" placeholder="Search">
+
+<button onclick="window.location='watchlist.html'">My List</button>
+
+<button onclick="logout()">Logout</button>
+
+</div>
+
+</div>
+
+
+<section class="banner">
+
+<div>
+
+<h1>Inception</h1>
+
+<p>Dream infiltration thriller</p>
+
+<button onclick="openTrailer('https://www.youtube.com/embed/YoHD9XEInc0')">Play</button>
+
+</div>
+
+</section>
+
+
+<div class="section">
+
+<h2>Trending Now</h2>
+
+<div class="row-container">
+
+<button class="arrow left" onclick="scrollRow('trending',-400)">‹</button>
+
+<div class="row" id="trending"></div>
+
+<button class="arrow right" onclick="scrollRow('trending',400)">›</button>
+
+</div>
+
+</div>
+
+
+<div class="section">
+
+<h2>Popular</h2>
+
+<div class="row-container">
+
+<button class="arrow left" onclick="scrollRow('popular',-400)">‹</button>
+
+<div class="row" id="popular"></div>
+
+<button class="arrow right" onclick="scrollRow('popular',400)">›</button>
+
+</div>
+
+</div>
+
+
+<div id="trailerModal" style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+justify-content:center;
+align-items:center;
+">
+
+<div>
+
+<iframe id="trailerFrame" width="900" height="500"></iframe>
+
+<br><br>
+
+<button onclick="closeTrailer()">Close</button>
+
+</div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
